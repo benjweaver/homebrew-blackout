@@ -17,7 +17,9 @@ jobs:
         uses: Homebrew/actions/setup-homebrew@main
       - run: brew style benjweaver/blackout/blackout
       - name: Lint the update script
-        run: shellcheck "$(brew --repository benjweaver/blackout)/scripts/update-cask.sh"
+        run: |
+          brew install shellcheck
+          shellcheck "$(brew --repository benjweaver/blackout)/scripts/update-cask.sh"
       - run: brew audit --cask --strict benjweaver/blackout/blackout
       - run: brew install --cask benjweaver/blackout/blackout
       - name: The app is installed and runs
