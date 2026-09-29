@@ -1,0 +1,26 @@
+name: Test
+
+# Checks the cask's style, then installs it on macOS.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - name: Set up Homebrew with this tap
+        uses: Homebrew/actions/setup-homebrew@main
+      - run: brew style benjweaver/blackout/blackout
+      - name: Lint the update script
+        run: shellcheck "$(brew --repository benjweaver/blackout)/scripts/update-cask.sh"
+      - run: brew audit --cask --strict benjweaver/blackout/blackout
+      - run: brew install --cask benjweaver/blackout/blackout
+      - name: The app is installed and runs
+        run: |
+          test -d /Applications/Blackout.app
+          codesign --verify --deep /Applications/Blackout.app
