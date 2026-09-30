@@ -11,4 +11,5 @@ Blackout isn't notarized yet, so the cask clears the download quarantine flag af
 installing; without that, macOS refuses to open it. Open Blackout from Applications to
 change its settings, including whether it shows a menu bar icon.
 
-`scripts/update-cask.sh` points `Casks/blackout.rb` at the latest release. A workflow runs it every six hours and then tests the cask.
+`scripts/update-cask.sh` points `Casks/blackout.rb` at a release, the latest by default.
+Blackout's release script runs it and pushes the result here, which starts the install test.
