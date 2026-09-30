@@ -16,5 +16,9 @@ cask "blackout" do
     run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/Blackout.app"]
   end
 
+  # Stop the running copy on uninstall and upgrade. A signal rather than `quit:`,
+  # which would ask for Automation access; Blackout has nothing to save.
+  uninstall signal: [["TERM", "dev.benjweaver.Blackout"]]
+
   zap trash: "~/Library/Preferences/dev.benjweaver.Blackout.plist"
 end

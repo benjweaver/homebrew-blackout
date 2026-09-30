@@ -14,6 +14,13 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
+      # GitHub turns off scheduled workflows after 60 days without repository
+      # activity, and this tap only changes when Blackout has a release.
+      # Re-enabling the workflow through the API keeps the schedule running.
+      - name: Keep the schedule enabled
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/update.yml/enable"
       - uses: actions/checkout@v4
       - name: Regenerate the cask
         env:
