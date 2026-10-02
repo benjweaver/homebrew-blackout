@@ -7,9 +7,9 @@ out the menu bar. It's free, open source, and has no telemetry.
 brew install --cask benjweaver/blackout/blackout
 ```
 
-Blackout isn't notarized yet, so the cask clears the download quarantine flag after
-installing; without that, macOS refuses to open it. Open Blackout from Applications to
-change its settings, including whether it shows a menu bar icon.
+Blackout is signed with a Developer ID and notarized by Apple, so macOS opens it without
+a warning. Open Blackout from Applications to change its settings, including whether it
+shows a menu bar icon.
 
 `scripts/update-cask.sh` points `Casks/blackout.rb` at a release, the latest by default.
 Blackout's release script runs it and pushes the result here, which starts the install test.

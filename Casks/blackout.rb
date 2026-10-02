@@ -11,11 +11,6 @@ cask "blackout" do
 
   app "Blackout.app"
 
-  # Blackout is not notarized yet, so clear the quarantine flag or Gatekeeper refuses to open it.
-  postflight_steps do
-    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/Blackout.app"]
-  end
-
   # Stop the running copy on uninstall and upgrade. A signal rather than `quit:`,
   # which would ask for Automation access; Blackout has nothing to save.
   uninstall signal: [["TERM", "dev.benjweaver.Blackout"]]
