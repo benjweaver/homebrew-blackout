@@ -1,6 +1,6 @@
 cask "blackout" do
-  version "1.0.2"
-  sha256 "81292c15f62713c1ef9ce5b420e1726441bf4f86334a05382b438ff697b41e12"
+  version "1.1.0"
+  sha256 "e06491cdef974dc7923c477d6dcfeb11df89d742347d8776da2a7d065d3678d2"
 
   url "https://github.com/benjweaver/blackout/releases/download/v#{version}/Blackout-#{version}.zip"
   name "Blackout"
